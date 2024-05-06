@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="webkit" name="renderer"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+  <link href="favicon.ico" rel="shortcut icon"/>
+ 
+  <script src="js/moment.min.js"></script>
+  <script src="js/LunarCalendar.js"></script>
+  <title>小六壬速算</title>
+</head>
+<body>
+  <h1>小六壬速算</h1>
+
+  <h2>此时信息：</h2>
+  <div id="current">
+    <div>
+      <label for="curr-solar-date">当前阳历：</label>
+      <span id="curr-solar-date"></span>&nbsp;&nbsp;
+    </div>
+    <div>
+      <label for="curr-lunar-date">当前阴历：</label>
+      <span id="curr-lunar-date"></span>&nbsp;&nbsp;
+    </div>
+    <div>
+      <label for="curr-six-cal">计算公式：</label>
+      <span id="curr-six-cal"></span>&nbsp;&nbsp;
+    </div>
+  </div>
+
+  <h2>历史信息：</h2>
+  <div>
+    <label for="solar-date">输入日期和时间：</label>
+    <input id="solar-date" type="datetime-local" >
+    <button onclick="onClickPointDate()">转换</button>
+  </div>
+
+  <div id="point">
+    <div>
+      <label for="point-solar-date">指定阳历：</label>
+      <span id="point-solar-date"></span>&nbsp;&nbsp;
+    </div>
+    <div>
+      <label for="point-lunar-date">指定阴历：</label>
+      <span id="point-lunar-date"></span>&nbsp;&nbsp;
+    </div>
+    <div>
+      <label for="point-six-cal">计算公式：</label>
+      <span id="point-six-cal"></span>&nbsp;&nbsp;
+    </div>
+    
+  </div>
+  <h2>图示：</h2>
+  <div>
+    <img src="img/png/小六壬.png">
+  </div>
+
+
+  <script>
+    // https://github.com/peanutguo/LunarCalendar
+    // Date日期转为农历日期
+    function convertDateToLunar(bizDate) {
+      // 转换为农历日期
+      var lunarDate = LunarCalendar.solarToLunar(bizDate.getFullYear(), bizDate.getMonth() +1, bizDate.getDate());
+      
+      // 闰月处理
+      lunarDate.lunarMonthCanRun = lunarDate.lunarMonth
+      if(lunarDate.lunarLeapMonth != 0){
+        if(lunarDate.lunarMonth > lunarDate.lunarLeapMonth){
+          lunarDate.lunarMonthCanRun = lunarDate.lunarMonth -1
+        }
+      }
+      console.log(lunarDate)
+      var result = new Date(lunarDate.lunarYear, lunarDate.lunarMonthCanRun-1, lunarDate.lunarDay, bizDate.getHours(), bizDate.getMinutes(), bizDate.getSeconds())
+      return result;
+    }
+    
+    // 现代小时转为古代小时
+    function convertHourToAncient(hour) {
+      var divisions = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+      var index = Math.floor((hour + 1) / 2) % 12;
+      return divisions[index] + (index+1);
+    }
+
+    // 利用余数速算小六壬
+    function calGua(sumNum) {
+      var divisions = ["空亡","大安","留连","速喜","赤口","小吉"];
+      var index = (sumNum)
+      return divisions[index] +''+(sumNum);
+    }
+
+    // 格式化date输出展示
+    function formatDate(uddate, monthPlus){
+      var year = uddate.getFullYear();
+      var month = uddate.getMonth() + monthPlus;
+      var day = uddate.getDate();
+      var hour = uddate.getHours();
+      var minute = uddate.getMinutes();
+      var second = uddate.getSeconds();
+      // 格式化为 "yyyy-MM-dd HH:mm:ss"
+      var formattedDate = year + "-" + formatNumber(month) + "-" + formatNumber(day) + " " + formatNumber(hour) + ":" + formatNumber(minute) + ":" + formatNumber(second);
+      // 辅助函数：将数字格式化为两位数，如果小于 10，在前面补零
+      function formatNumber(number) {
+        return number < 10 ? "0" + number : number;
+      }
+      return formattedDate;
+
+    }
+
+    // 自定义时间计算
+    function onClickPointDate() {
+      // 获取用户输入的日期和时间
+      var inputDate = document.getElementById("solar-date").value;
+      var momentObj = moment(inputDate);
+      var bizDate = new Date(momentObj.year(), momentObj.month(), momentObj.date(), momentObj.hour(), momentObj.minute(), momentObj.second())
+      renderDiv(bizDate, "point")
+    }
+
+    // 指定bizDate 计算小六壬, 并渲染到div中
+    function renderDiv(bizDate, elementPrefix) {
+      // 获取用户输入的日期和时间
+      var bizDateStr = formatDate(bizDate, 1)
+      document.getElementById(elementPrefix+"-solar-date").innerText = bizDateStr;
+      // 转换为农历日期
+      var lunarDate = convertDateToLunar(bizDate)
+      var lunarDateStr = formatDate(lunarDate, 1)
+      // 转换为中国古代时辰
+      var ancientTime = convertHourToAncient(bizDate.getHours());
+      document.getElementById(elementPrefix+"-lunar-date").innerText = lunarDateStr +'_'+ ancientTime;
+      //公式展示
+      formula_month = parseInt(lunarDate.getMonth()+1);
+      formula_day = parseInt(lunarDate.getDate());
+      formula_hour = parseInt(ancientTime.substring(1));
+      formula_result = (formula_month + formula_day + formula_hour -2 ) %6;
+      formula_gua = calGua(formula_result)
+      document.getElementById(elementPrefix+"-six-cal").innerText = "(" +formula_month + "+" +formula_day+ "+" +formula_hour + " -2) %6 = " + formula_result +" = "+ formula_gua
+      
+    }
+
+    // 启动时就算当时数据
+    function onReady(){
+      var currentDate = new Date();
+      renderDiv(currentDate, "curr")
+      
+    }
+    onReady();
+
+
+  </script>
+</body>
+</html>

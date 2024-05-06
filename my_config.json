@@ -1,0 +1,119 @@
+[
+  {
+    "show_text": "群晖主页",
+    "url_office": "http://master.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.198:5000",
+    "pic": "img/png/Settings.png"
+  },
+  {
+    "show_text": "共享文件",
+    "url_office": "http://fb.wyc.matrixcall.top:12841/",
+    "url_home": "http://home.d.matrixcall.top:2022",
+    "pic": "img/png/FontExplorer-X.png"
+  },
+  {
+    "show_text": "兰空图床",
+    "url_office": "http://bed.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.201:80/",
+    "pic": "img/png/Photos.png"
+  },
+  {
+    "show_text": "PicX图床",
+    "url_office": "http://picx.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.205:80/",
+    "pic": "img/png/Photos.png"
+  },
+  {
+    "show_text": "NACOS",
+    "url_office": "http://nacos.wyc.matrixcall.top:12841/nacos",
+    "url_home": "http://192.168.0.203:8848/nacos",
+    "pic": "img/png/Nacos.png"
+  },
+  {
+    "show_text": "XXLJOB",
+    "url_office": "http://xxl.wyc.matrixcall.top:12841/xxl-job-admin/",
+    "url_home": "http://192.168.0.204:8080/xxl-job-admin",
+    "pic": "img/png/AppStore.png"
+  },
+  {
+    "show_text": "个人主页",
+    "url_office": "/",
+    "url_home": "https://mxcall.github.io/",
+    "pic": "img/png/Podcats.png"
+  },
+  {
+    "show_text": "小六壬",
+    "url_office": "index_six.html",
+    "url_home": "index_six.html",
+    "pic": "img/png/Podcats.png"
+  },
+  {
+    "show_text": "电影",
+    "url_office": "http://master.wyc.matrixcall.top:12841/?launchApp=SYNO.SDS.VideoStation.AppInstance&SynoToken=111",
+    "url_home": "http://192.168.0.198:5000/?launchApp=SYNO.SDS.VideoStation.AppInstance&SynoToken=111",
+    "pic": "img/png/Videos.png"
+  },
+  {
+    "show_text": "语雀笔记",
+    "url_office": "https://www.yuque.com/mxcall/study",
+    "url_home": "https://www.yuque.com/mxcall/study",
+    "pic": "img/png/yuque.png"
+  },
+  {
+    "show_text": "浏览器",
+    "url_office": "http://firefox2.wyc.matrixcall.top:12841/login?token=F",
+    "url_home": "http://192.168.0.198:18818/login?token=F",
+    "pic": "img/png/yuque.png"
+  },
+  {
+    "show_text": "Alist",
+    "url_office": "http://home.d.matrixcall.top:5244/",
+    "url_home": "http://192.168.1.2:5244/",
+    "pic": "img/png/FontExplorer-X.png"
+  },
+  {
+    "show_text": "GPT0_别人",
+    "url_office": "https://chat18.aichatos.xyz/",
+    "url_home": "https://chat.jinshutuan.com/",
+    "pic": "img/png/Gpt.png"
+  },
+  {
+    "show_text": "GPT1_osc",
+    "url_office": "http://chat1.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.209:3002",
+    "pic": "img/png/Gpt.png"
+  },
+  {
+    "show_text": "GPT88_keyWQ",
+    "url_office": "http://chat88.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.210:3002",
+    "pic": "img/png/Gpt.png"
+  },
+  {
+    "show_text": "消息推送",
+    "url_office": "http://msg.wyc.matrixcall.top:12841/",
+    "url_home": "http://192.168.0.218:3000/",
+    "pic": "img/png/AppStore.png"
+  },
+  {
+    "show_text": "学习_前端",
+    "url_office": "http://fb.wyc.matrixcall.top:12841/?study/07-%E9%87%8D%E5%AD%A6%E5%89%8D%E7%AB%AF",
+    "url_home": "http://192.168.0.198:2022/?study/07-%E9%87%8D%E5%AD%A6%E5%89%8D%E7%AB%AF",
+    "pic": "img/png/AppStore.png"
+  },
+  {
+    "show_text": "学习_面试",
+    "url_office": "https://snailclimb.gitee.io/javaguide-interview/",
+    "url_home": "https://snailclimb.gitee.io/javaguide-interview/",
+    "pic": "img/png/AppStore.png"
+  },
+  {
+    "show_text": "学习_LeeC",
+    "url_office": "https://snailclimb.gitee.io/javaguide-interview/",
+    "url_home": "https://snailclimb.gitee.io/javaguide-interview/",
+    "pic": "img/png/AppStore.png"
+  }
+  
+  
+
+]
